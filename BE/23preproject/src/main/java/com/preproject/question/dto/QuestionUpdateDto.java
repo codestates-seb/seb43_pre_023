@@ -6,7 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Getter
-public class QuestionPatchDto {
+public class QuestionUpdateDto {
     @NotBlank
     private String title;
 
