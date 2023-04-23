@@ -57,7 +57,7 @@ export default function RightSideBar() {
             </a>
           </div>
         </li>
-        <li className="bg-[#FDF7E2] flex justify-center pb-3">
+        <li className="bg-[#FDF7E2] flex pb-2 px-3">
           {Icon(IconRemoteSm)}
           <div className="flex-shrink pl-2">
             <a href="https://stackoverflow.com/">

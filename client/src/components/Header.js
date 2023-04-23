@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { IconSearch, IconAccessibility } from "@stackoverflow/stacks-icons";
+import { IconSearch } from "@stackoverflow/stacks-icons";
 import { fetchUserInfo } from "../utils/fetchLogin";
 import sprites from "../assets/images/sprites.svg";
 import Icon from "../utils/inputIcon";
@@ -85,50 +85,39 @@ export default function Header() {
   };
 
   return (
-    <div className="sticky top-0 z-20 flex-col w-full drop-shadow h-[60px] flex-nowrap">
-      <div className="h-1 bg-primary-400"></div>
-      <div className="flex justify-center items-center py-2 bg-soGray-headerbg">
-        <div className="mx-2 my-1">
-          <Link to="/" onClick={onClickremove}>
-            <div
-              className="ml-0 mr-4 w-[150px] h-[30px] bg-no-repeat bg-[0_-500px]"
-              style={{ backgroundImage: `url(${sprites})` }}
-            ></div>
-          </Link>
-        </div>
-
-        <div className="text-sm text-[hsl(210,8%,35%)]">
-          <a
-            href="https://stackoverflow.co/"
-            className="mr-4 hover:bg-[#eee] rounded-full hover:text-black px-1"
-          >
-            About
-          </a>
-          <a
-            href="https://stackoverflow.co/"
-            className="mr-4 hover:bg-[#eee] rounded-full hover:text-black px-1"
-          >
-            Products
-          </a>
-          <a
-            href="https://stackoverflow.co/teams/"
-            className="hover:bg-[#eee] rounded-full hover:text-black px-1"
-          >
-            For Teams
-          </a>
-        </div>
-        <div className="flex items-center mx-2 bg-white border rounded-md grow border-soGray-light focus:ring-secondary-300 h-[36px]">
-          <div className="flex mx-2 my-1 text-soGray-icon">
-            {Icon(IconSearch)}
+    <div className="sticky top-0 z-20 w-full drop-shadow h-[60px] flex-nowrap border-t-4 border-[#F48224]">
+      <div className=" bg-soGray-headerbg">
+        <div className="w-[1400px] flex mx-auto items-center py-2">
+          <div className="mx-2 my-1">
+            <Link to="/" onClick={onClickremove}>
+              <div
+                className="ml-0 mr-4 w-[150px] h-[30px] bg-no-repeat bg-[0_-500px]"
+                style={{ backgroundImage: `url(${sprites})` }}
+              ></div>
+            </Link>
           </div>
-          <input
-            type="text"
-            className="w-[calc(100%-40px)] focus:outline-none focus-visible:outline-none"
-            placeholder="Search..."
-          />
-        </div>
 
-        <div>{isLogin ? <LoginGNB /> : <LogoutGNB />}</div>
+          <div className="text-sm text-[hsl(210,8%,35%)]">
+            <a
+              href="https://stackoverflow.co/"
+              className="mr-4 hover:bg-[#eee] rounded-full hover:text-black px-1"
+            >
+              Products
+            </a>
+          </div>
+          <div className="flex items-center mx-2 bg-white border rounded-md grow border-soGray-light focus:ring-secondary-300 h-[36px]">
+            <div className="flex mx-2 my-1 text-soGray-icon">
+              {Icon(IconSearch)}
+            </div>
+            <input
+              type="text"
+              className="w-[calc(100%-40px)] focus:outline-none focus-visible:outline-none"
+              placeholder="Search..."
+            />
+          </div>
+
+          <div>{isLogin ? <LoginGNB /> : <LogoutGNB />}</div>
+        </div>
       </div>
     </div>
   );
