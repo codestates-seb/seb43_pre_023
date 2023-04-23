@@ -8,13 +8,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import java.time.LocalDateTime;
+
 
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
+@Table(name = "QUESTION")
 public class Question extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +34,4 @@ public class Question extends Auditable {
 
     @Min(0)
     private int views;
-
-    private LocalDateTime createdAt;
-
-    private LocalDateTime modifiedAt;
 }
