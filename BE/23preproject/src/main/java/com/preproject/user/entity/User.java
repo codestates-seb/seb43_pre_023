@@ -21,11 +21,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(length = 30, nullable = false)
-    private String name;
+    @Column(length = 30, nullable = true)
+    private String userName;
 
     @Column(length = 16, nullable = false, unique = true)
-    private String nickname;
+    private String displayName;
 
     @Column(nullable = false, updatable = false, unique = true)
     private String email;
@@ -36,6 +36,12 @@ public class User {
     private LocalDateTime createdAt;
 
     private LocalDateTime modifiedAt;
+
+    public User(String displayName, String email, String password) {
+        this.displayName = displayName;
+        this.email = email;
+        this.password = password;
+    }
 
     @OneToMany(mappedBy = "userId")
     private List<Question> questions = new ArrayList<>();
