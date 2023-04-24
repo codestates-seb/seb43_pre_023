@@ -1,14 +1,17 @@
 package com.preproject.question.dto;
 
+import com.preproject.user.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.validation.constraints.*;
 
 @Getter
+@AllArgsConstructor
 public class QuestionCreateDto {
     @NotNull
     @Positive
-    private Long userId;
+    private User userId;
 
     @NotBlank
     @Size(max = 20)
