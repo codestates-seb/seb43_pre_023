@@ -21,10 +21,6 @@ public class Question extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User userId;
-
     @Column(length = 20, nullable = false)
     private String title;
 
@@ -34,4 +30,8 @@ public class Question extends Auditable {
 
     @Min(0)
     private int views;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User userId;
 }
