@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSideBar from "../components/RightSidebar";
@@ -6,16 +6,34 @@ import Card from "../components/Card";
 import Loading from "../components/Loading";
 
 export default function Home() {
-  const [questionList, setQuestionList] = useState([]);
+  const [questionList, setQuestionList] = useState([]); // map때문에 배열 안넣어놓으면 에러 발생
   const [isPending, setIsPending] = useState(true);
 
-  /*   if (isPending) {
+  useEffect(() => {
+    fetch(`https://my-json-server.typicode.com/hyobbeee/stack-overflow-db/test`)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error("could not fetch the data for that resource");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setIsPending(false);
+        setQuestionList(data);
+      })
+      .catch((error) => {
+        setIsPending(false);
+        throw Error(error.message);
+      });
+  }, []);
+
+  if (isPending) {
     return (
       <div>
         <Loading />
       </div>
     );
-  } */
+  }
 
   return (
     <div className="so-main-wrapper flex flex-col">
@@ -33,7 +51,7 @@ export default function Home() {
               Ask Question
             </Link>
           </div>
-          <div className="mr-6 border-t border-soGray-light">
+          <div className="mr-6">
             {questionList && (
               <div className="questionList">
                 {questionList.map((card) => (

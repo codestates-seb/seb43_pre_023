@@ -60,7 +60,7 @@
   }
 
   .so-page-item {
-    @apply items-center px-2 text-xs py-2 text-soGray-darker bg-white rounded border border-soGray-light hover: bg-soGray-bg;
+    @apply items-center px-2 text-xs py-2 text-soGray-darker bg-white rounded border border-soGray-light;
   }
 
   .so-filter-item {
