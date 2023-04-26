@@ -11,6 +11,7 @@ import QuestionCreate from "./pages/Question/QuestionCreate";
 import QuestionUpdate from "./pages/Question/QuestionUpdate";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
+import Question from "./pages/Question/Question";
 
 function App() {
   return (
@@ -21,12 +22,10 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Siginup />}></Route>
         <Route path="/mypage" element={<Mypage />}></Route>
-        <Route path="/questions/:id" element={<QuestionDetail />}></Route>
-        <Route path="/questions/create" element={<QuestionCreate />}></Route>
-        <Route
-          path="/questions/update/:id"
-          element={<QuestionUpdate />}
-        ></Route>
+        <Route path="/question" element={<Question />}></Route>
+        <Route path="/question/:id" element={<QuestionDetail />}></Route>
+        <Route path="/question/create" element={<QuestionCreate />}></Route>
+        <Route path="/question/update/:id" element={<QuestionUpdate />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

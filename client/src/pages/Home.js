@@ -1,11 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSideBar from "../components/RightSidebar";
 import Card from "../components/Card";
+import Loading from "../components/Loading";
 
 export default function Home() {
-  const [questionList, setQuestionList] = useState([]);
+  const [questionList, setQuestionList] = useState([]); // map때문에 배열 안넣어놓으면 에러 발생
+  const [isPending, setIsPending] = useState(true);
+
+  useEffect(() => {
+    fetch(`https://my-json-server.typicode.com/hyobbeee/stack-overflow-db/test`)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error("could not fetch the data for that resource");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setIsPending(false);
+        setQuestionList(data);
+      })
+      .catch((error) => {
+        setIsPending(false);
+        throw Error(error.message);
+      });
+  }, []);
+
+  if (isPending) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="so-main-wrapper flex flex-col">
@@ -15,7 +43,7 @@ export default function Home() {
         </nav>
         <div className="so-main-content so-with-both-side border-r-white">
           <div className="flex flex-row border-b-white items-center justify-between px-6 py-8">
-            <h2 className="text-xxl">All Questions</h2>
+            <h2 className="text-xxl">Top Questions</h2>
             <Link
               to="/question/create"
               className="so-button-primary hover:bg-secondary-400"
@@ -23,7 +51,7 @@ export default function Home() {
               Ask Question
             </Link>
           </div>
-          <div className="mr-8 border-t border-soGray-light">
+          <div className="mr-6">
             {questionList && (
               <div className="questionList">
                 {questionList.map((card) => (
